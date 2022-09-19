@@ -28,72 +28,70 @@ public class ParseFunction implements MapFunction<String, Entity> {
         Entity entity = new Entity();
 
         try {
-                if (StringUtil.isNotBlank(message)) {
-                    entity = JSON.parseObject(message,  Entity.class);
-                    if(entity.getGtp_apn()==null){
+            if (StringUtil.isNotBlank(message)) {
+                entity = JSON.parseObject(message,  Entity.class);
+                if(entity.getGtp_apn()==null){
 
-                        entity.setGtp_apn("");
-                    }
-                    if(entity.getGtp_phone_number()==null){
+                    entity.setGtp_apn("");
+                }
+                if(entity.getGtp_phone_number()==null){
 
-                        entity.setGtp_phone_number("");
-                    }
-                    if(entity.getGtp_imei()==null){
+                    entity.setGtp_phone_number("");
+                }
+                if(entity.getGtp_imei()==null){
 
-                        entity.setGtp_imei("");
-                    }
-                    if(entity.getGtp_imsi()==null){
+                    entity.setGtp_imei("");
+                }
+                if(entity.getGtp_imsi()==null){
 
-                        entity.setGtp_imsi("");
-                    }
-
-
-                    if(!"".equals(entity.getGtp_imei())|| !"".equals(entity.getGtp_imsi())|| !"".equals(entity.getGtp_phone_number())) {
-
-
-                        String md5Str = DigestUtils.md5Hex(entity.getGtp_imei() + entity.getGtp_imsi() + entity.getGtp_phone_number());
-                        entity.setHashkey(md5Str);
-
-                        if(entity.getGtp_uplink_teid()==null || entity.getGtp_uplink_teid()==0){
-
-                            if(entity.getGtp_downlink_teid()==null || entity.getGtp_downlink_teid()==0){
-
-                                entity.setIfError(1);
-                                logger.info("teid为空" + message);
-
-                            }
-                            else{
-
-                                entity.setGtp_teid(entity.getGtp_downlink_teid());
-                            }
-                        }else{
-
-                            entity.setGtp_teid(entity.getGtp_uplink_teid());
-
-                        }
-
-                    }
-                    else {
-                        entity.setHashkey("");
-                        entity.setIfError(1);
-                        logger.info("三元组为空" + message);
-
-                    }
-
-
-
-                }else{
+                    entity.setGtp_imsi("");
+                }
+              /*  if(entity.getCommon_recv_time()<0 || entity.getCommon_recv_time()>9999999999L){
 
                     entity.setIfError(1);
-                    logger.error("数据转换JSON格式异常,原始日志为:" + message);
+                    logger.info("时间戳不合法 " + entity.getCommon_recv_time());
+
+                }*/
+
+
+                if(!"".equals(entity.getGtp_imei())|| !"".equals(entity.getGtp_imsi())|| !"".equals(entity.getGtp_phone_number())) {
+
+
+                    String md5Str = DigestUtils.md5Hex(entity.getGtp_imei() + entity.getGtp_imsi() + entity.getGtp_phone_number());
+                    entity.setHashkey(md5Str);
+
+                    if( entity.getGtp_uplink_teid()==0 && entity.getGtp_downlink_teid()==0){
+
+                            entity.setIfError(1);
+                            logger.info("teid为空" + message);
+
+                    }else{
+                        String gtp_uuid = DigestUtils.md5Hex(entity.getGtp_uplink_teid() +"|"+ entity.getGtp_downlink_teid() );
+                        entity.setGtp_uuid(gtp_uuid);
+                    }
+
                 }
-            } catch (JSONException jse) {
+                else {
+                    entity.setHashkey("");
+                    entity.setIfError(1);
+                    logger.info("三元组为空" + message);
+
+                }
+
+
+
+            }else{
+
+                entity.setIfError(1);
+                logger.error("数据转换JSON格式异常,原始日志为:" + message);
+            }
+        } catch (JSONException jse) {
             entity.setIfError(1);
             logger.error("数据转换JSON格式异常,原始日志为:" + message);
-            } catch (RuntimeException re) {
+        } catch (RuntimeException re) {
             entity.setIfError(1);
             logger.error("GTP日志条件过滤异常,异常信息为：" + re);
-            }
+        }
 
         return entity;
     }

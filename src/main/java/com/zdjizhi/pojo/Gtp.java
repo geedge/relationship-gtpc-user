@@ -6,10 +6,11 @@ public class Gtp {
     private String gtp_imei;
     private String gtp_imsi;
     private String gtp_phone_number;
-    private Long gtp_teid;
     private Integer msg_type;
-    private Long last_update_time;
-
+    private long last_update_time;
+    private long gtp_uplink_teid;
+    private long gtp_downlink_teid	;
+    private String gtp_uuid;
 
     public Integer getMsg_type() {
         return msg_type;
@@ -51,19 +52,35 @@ public class Gtp {
         this.gtp_phone_number = gtp_phone_number;
     }
 
-    public Long getGtp_teid() {
-        return gtp_teid;
+    public long getGtp_uplink_teid() {
+        return gtp_uplink_teid;
     }
 
-    public void setGtp_teid(Long gtp_teid) {
-        this.gtp_teid = gtp_teid;
+    public void setGtp_uplink_teid(long gtp_uplink_teid) {
+        this.gtp_uplink_teid = gtp_uplink_teid;
     }
 
-    public Long getLast_update_time() {
+    public long getGtp_downlink_teid() {
+        return gtp_downlink_teid;
+    }
+
+    public void setGtp_downlink_teid(long gtp_downlink_teid) {
+        this.gtp_downlink_teid = gtp_downlink_teid;
+    }
+
+    public String getGtp_uuid() {
+        return gtp_uuid;
+    }
+
+    public void setGtp_uuid(String gtp_uuid) {
+        this.gtp_uuid = gtp_uuid;
+    }
+
+    public long getLast_update_time() {
         return last_update_time;
     }
 
-    public void setLast_update_time(Long last_update_time) {
+    public void setLast_update_time(long last_update_time) {
         this.last_update_time = last_update_time;
     }
 }

@@ -9,11 +9,11 @@ public class Entity {
     private String gtp_imei;
     private String gtp_imsi;
     private String gtp_phone_number;
-    private Long gtp_uplink_teid;
-    private Long gtp_downlink_teid	;
+    private long gtp_uplink_teid;
+    private long gtp_downlink_teid	;
     private String gtp_msg_type;
-    private Long common_recv_time;
-    private Long gtp_teid;
+    private long common_recv_time;
+    private String gtp_uuid;
 
 
     public String getHashkey() {
@@ -64,19 +64,19 @@ public class Entity {
         this.gtp_phone_number = gtp_phone_number;
     }
 
-    public Long getGtp_uplink_teid() {
+    public long getGtp_uplink_teid() {
         return gtp_uplink_teid;
     }
 
-    public void setGtp_uplink_teid(Long gtp_uplink_teid) {
+    public void setGtp_uplink_teid(long gtp_uplink_teid) {
         this.gtp_uplink_teid = gtp_uplink_teid;
     }
 
-    public Long getGtp_downlink_teid() {
+    public long getGtp_downlink_teid() {
         return gtp_downlink_teid;
     }
 
-    public void setGtp_downlink_teid(Long gtp_downlink_teid) {
+    public void setGtp_downlink_teid(long gtp_downlink_teid) {
         this.gtp_downlink_teid = gtp_downlink_teid;
     }
 
@@ -88,20 +88,19 @@ public class Entity {
         this.gtp_msg_type = gtp_msg_type;
     }
 
-    public Long getCommon_recv_time() {
+    public long getCommon_recv_time() {
         return common_recv_time;
     }
 
-    public void setCommon_recv_time(Long common_recv_time) {
+    public void setCommon_recv_time(long common_recv_time) {
         this.common_recv_time = common_recv_time;
     }
 
-
-    public Long getGtp_teid() {
-        return gtp_teid;
+    public String getGtp_uuid() {
+        return gtp_uuid;
     }
 
-    public void setGtp_teid(Long gtp_teid) {
-        this.gtp_teid = gtp_teid;
+    public void setGtp_uuid(String gtp_uuid) {
+        this.gtp_uuid = gtp_uuid;
     }
 }

@@ -42,4 +42,5 @@ public  class GtpConfig {
 
 
     public static final int CACHE_UPDATE_SECONDS = GtpConfigurations.getIntProperty(0, "cache.update.seconds");
+
 }
