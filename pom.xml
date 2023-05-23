@@ -6,7 +6,7 @@
 
     <groupId>com.zdjizhi</groupId>
     <artifactId>relationship-gtpc-user</artifactId>
-    <version>22-08-19</version>
+    <version>22-10-09</version>
 
     <name>relationship-gtpc-user</name>
     <url>http://www.example.com</url>
@@ -251,7 +251,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>relationship-gtpc-user-22-08-19</finalName>
+                            <finalName>relationship-gtpc-user-22-10-09</finalName>
                             <transformers combine.children="append">
                                 <!-- The service transformer is needed to merge META-INF/services files -->
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>

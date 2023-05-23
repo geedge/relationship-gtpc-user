@@ -14,6 +14,7 @@ public class Entity {
     private String gtp_msg_type;
     private long common_recv_time;
     private String gtp_uuid;
+    private int common_vsys_id;
 
 
     public String getHashkey() {
@@ -102,5 +103,13 @@ public class Entity {
 
     public void setGtp_uuid(String gtp_uuid) {
         this.gtp_uuid = gtp_uuid;
+    }
+
+    public int getCommon_vsys_id() {
+        return common_vsys_id;
+    }
+
+    public void setCommon_vsys_id(int common_vsys_id) {
+        this.common_vsys_id = common_vsys_id;
     }
 }

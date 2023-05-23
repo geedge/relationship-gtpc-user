@@ -11,6 +11,8 @@ public class Gtp {
     private long gtp_uplink_teid;
     private long gtp_downlink_teid	;
     private String gtp_uuid;
+    private int common_vsys_id;
+
 
     public Integer getMsg_type() {
         return msg_type;
@@ -82,5 +84,13 @@ public class Gtp {
 
     public void setLast_update_time(long last_update_time) {
         this.last_update_time = last_update_time;
+    }
+
+    public int getCommon_vsys_id() {
+        return common_vsys_id;
+    }
+
+    public void setCommon_vsys_id(int common_vsys_id) {
+        this.common_vsys_id = common_vsys_id;
     }
 }

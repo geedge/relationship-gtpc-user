@@ -46,6 +46,10 @@ public class ParseFunction implements MapFunction<String, Entity> {
 
                     entity.setGtp_imsi("");
                 }
+                if(entity.getCommon_vsys_id()==0){
+
+                    entity.setCommon_vsys_id(1);
+                }
               /*  if(entity.getCommon_recv_time()<0 || entity.getCommon_recv_time()>9999999999L){
 
                     entity.setIfError(1);
@@ -57,7 +61,7 @@ public class ParseFunction implements MapFunction<String, Entity> {
                 if(!"".equals(entity.getGtp_imei())|| !"".equals(entity.getGtp_imsi())|| !"".equals(entity.getGtp_phone_number())) {
 
 
-                    String md5Str = DigestUtils.md5Hex(entity.getGtp_imei() + entity.getGtp_imsi() + entity.getGtp_phone_number());
+                    String md5Str = DigestUtils.md5Hex(entity.getGtp_imei() + entity.getGtp_imsi() + entity.getGtp_phone_number()+entity.getCommon_vsys_id());
                     entity.setHashkey(md5Str);
 
                     if( entity.getGtp_uplink_teid()==0 && entity.getGtp_downlink_teid()==0){
